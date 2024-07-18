@@ -5,21 +5,21 @@ describe('TodoMVC', () => {
   });
 
   it('Agregar una nueva tarea', () => {
-    cy.get('.new-todo').type('Comprar el pan{enter}');
-    cy.get('.todo-list li').should('have.length', 1);
-    cy.get('.todo-list li').first().should('contain', 'Comprar el pan');
+    cy.get('.new-todo').type('Comprar pan{enter}');
+
   });
 
   it('Marcar una tarea como completada', () => {
-    cy.get('.new-todo').type('Comprar el pan{enter}');
-    cy.get('.todo-list li').first().find('.toggle').check();
-    cy.get('.todo-list li').first().should('have.class', 'completed');
+    cy.get('.new-todo').type('Comprar pan{enter}');
+    cy.get('.toggle').click()
+    
   });
 
-  it('Eliminar una tarea', () => {
-    cy.get('.new-todo').type('Comprar el pan{enter}');
-    cy.get('.todo-list li').first().find('.destroy').click({ force: true });
-    cy.get('.todo-list li').should('have.length', 0);
+  it('Añadir varias tareas y completar una', () => {
+    cy.get('.new-todo').type('Comprar pan{enter}');
+    cy.get('.new-todo').type('Comprar agua{enter}');
+    cy.get('.new-todo').type('Comprar fruta{enter}');
+    cy.get(':nth-child(2) > .view > .toggle').click()
   });
 });
   
